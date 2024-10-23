@@ -1,0 +1,81 @@
+<div class="container-fluid " >
+    <div class="row p-2 bg-info">
+        <div class="col-6">
+            <h3>Deparment List</h3>
+        </div>
+        <div class="col-6 text-end">
+            <button class="btn btn-warning" (click)="openModal()"> Add Deparment</button>
+        </div>
+    </div>
+
+    @if(departmentList && departmentList.length > 0){
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Department Name</th>
+                    <th>Department Number</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody >
+                @for (item of departmentList; track $index){
+                <tr>
+                    <td>{{item.departmentName | titlecase }}</td>
+                    <td>{{item.departmentNumber }}</td>
+                    <td class="text-center">
+                        <button class="btn btn-primary" (click)="onEdit(item)">Edit</button> | 
+                        <button class="btn btn-danger" (click)="onDelete(item)">Delete</button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>    
+    }@else {
+        <h5 class="text-center p-5">Department not found</h5>
+    }
+</div>
+
+<!-- Modal header -->
+<div class="modal" id="myModal" #myModal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                @if(departmentForm.value.id != 0){
+                    <h4 class="modal-title">Update Department</h4>
+                }@else {
+                    <h4 class="modal-title">Add Department</h4>
+
+                }
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+            </div>
+
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" formControlName="departmentname" name="departmentname" class="form-control" placeholder="DepartmentName">
+                </div>
+            </div>    
+            <div class="row mt-3">
+                <div class="col-6">
+                    <input type="text" formControlName="departmentnumber" name="departmentnumber" class="form-control" placeholder="DepartmentNumber">
+                </div>
+            </div>      
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            @if(departmentForm.value.id == 0){
+                <button type="submit" [disabled]="this.departmentForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Save</button>                
+            }@else{
+                <button type="submit" [disabled]="this.departmentForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Update</button>                
+
+            }
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+        </div>
+    </form>        
+
+        </div>
+    </div>
+</div>

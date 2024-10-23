@@ -1,0 +1,67 @@
+<div style="display: flex;">
+    <div style="display: inline-block;width: 20%;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <span class="fs-5" style="color: aqua;">Hospital Management System</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white">
+                        <i class="bi bi-house"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/patient" routerLinkActive="active" class="nav-link text-white">
+                        <i class="bi bi-heart-pulse"></i>                       
+                        Patient
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/doctor" routerLinkActive="active" class="nav-link text-white">
+                        <i class="bi bi-person"></i>
+                        Doctor
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/nurse" routerLinkActive="active" class="nav-link text-white">
+                        <i class="bi bi-clipboard2-pulse"></i>
+                        Nurse
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/pathologist" routerLinkActive="active" class="nav-link text-white">
+                        <i class="bi bi-file-medical"></i>
+                        Pathologist
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/receptionist" routerLinkActive="active" class="nav-link text-white">
+                        <i class="bi bi-info-circle"></i>
+                        Receptionist
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/department" routerLinkActive="active" class="nav-link text-white">
+                        <i class="bi bi-hospital"></i>
+                        Department
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div >
+                <a routerLink="/login" routerLinkActive="active" class="nav-link text-white" aria-expanded="false">
+                    <i class="bi bi-box-arrow-right" style="margin-right: 0.3rem;"></i>                    
+                    <strong>Logout</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div style="display: inline-block;width: 80%;">
+        <router-outlet/>
+    </div>
+</div>

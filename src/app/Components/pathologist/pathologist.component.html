@@ -1,0 +1,106 @@
+<div class="container-fluid">
+    <div class="row p-2 bg-info">
+        <div class="col-6">
+            <h3>Pathologist List</h3>
+        </div>
+        <div class="col-6 text-end">
+            <button class="btn btn-warning" (click)="openModal()"> Add Pathologist</button>
+        </div>
+    </div>
+
+    @if(pathologistList && pathologistList.length > 0){
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of pathologistList; track $index){
+                <tr>
+                    <td>{{item.name | titlecase }}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.mobile}}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.gender}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-primary" (click)="onEdit(item)">Edit</button> | 
+                        <button class="btn btn-danger" (click)="onDelete(item)">Delete</button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>    
+    }@else {
+        <h5 class="text-center p-5">Pathologist not found</h5>
+    }
+</div>
+
+<!-- Modal header -->
+<div class="modal" id="myModal" #myModal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                @if(pathologistForm.value.id != 0){
+                    <h4 class="modal-title">Update Pathologist</h4>
+                }@else {
+                    <h4 class="modal-title">Add Pathologist</h4>
+
+                }
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"></button>
+            </div>
+
+    <form [formGroup]="pathologistForm" (ngSubmit)="onSubmit()">
+
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" formControlName="name" name="name" class="form-control" placeholder="Name">
+                </div>
+            </div>    
+            <div class="row mt-3">
+                <div class="col-6">
+                    <input type="text" formControlName="email" name="email" class="form-control" placeholder="Email">
+                </div>
+                <div class="col-6">
+                    <input type="text" formControlName="mobile" name="mobile" class="form-control" placeholder="Mobile">
+                </div>
+            </div>    
+            <div class="row mt-3">
+                <div class="col-6">
+                    <input type="number" formControlName="age" name="age" class="form-control" placeholder="Age">
+                </div>
+                <div class="col-6">
+                    <input type="text" formControlName="gender" name="gender" class="form-control" placeholder="Gender">
+                </div>
+            </div>    
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="form-group form-check">
+                        <input type="checkbox" formControlName="status" name="age" class="form-check-input" placeholder="Age">
+                        <label>Check</label>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            @if(pathologistForm.value.id == 0){
+                <button type="submit" [disabled]="this.pathologistForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Save</button>                
+            }@else{
+                <button type="submit" [disabled]="this.pathologistForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Update</button>                
+
+            }
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+        </div>
+    </form>        
+
+        </div>
+    </div>
+</div>

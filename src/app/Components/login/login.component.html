@@ -1,0 +1,19 @@
+<div class="parent">
+    <div class="container">
+        <div class="login-box">
+            <h1>Login</h1>
+            <form action="#" method="POST">
+                <div class="textbox">
+                    <label for="email">Email</label>
+                    <input type="email" [(ngModel)]="loginObj.userName" id="email" name="userName" placeholder="Enter your email" required>
+                </div>
+                <div class="textbox">
+                    <label for="password">Password</label>
+                    <input type="password" [(ngModel)]="loginObj.password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn" (click)="onLogin()">Login</button>
+                <a href="#" class="forgot">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
+</div>
